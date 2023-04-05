@@ -1,5 +1,8 @@
 const theme = {
-  color: 'blue',
+  colors: {
+    main: 'blue',
+    font: 'white',
+  },
 };
 
 export default theme;
