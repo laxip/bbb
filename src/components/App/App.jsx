@@ -8,10 +8,10 @@ function App() {
 
       <Ul>
         <li>
-          <Link to="/">Read beers</Link>
+          <Link to="/create">Create beer</Link>
         </li>
         <li>
-          <Link to="/add">Add beer</Link>
+          <Link to="/">Read beers</Link>
         </li>
       </Ul>
 

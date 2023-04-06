@@ -7,15 +7,15 @@ import styled from 'styled-components';
  */
 export const Ul = styled.ul`
   display: flex;
-  border: 1px solid #8d8d8d;
-  border-radius: 100px;
-  padding: 0 10px;
+  border-bottom: 1px solid #8d8d8d;
+  padding: 0;
   margin: 30px 0;
 
   li {
     display: block;
-    padding: 10px;
+    padding: 10px 0;
     margin: 0;
+    margin-right: 30px;
   }
 
   a {

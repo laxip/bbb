@@ -28,40 +28,44 @@ const Read = () => {
         <Button onClick={loadAndSetBeers}>Clear current state and load examples from API</Button>
       </ButtonContainer>
 
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Contributed by</th>
-            <th>IBU</th>
-            <th>Food pairing</th>
-            <th />
-          </tr>
-        </thead>
-        <tbody>
-          {beers.map((beer) => (
-            <tr key={beer.id}>
-              <td>{beer.name}</td>
-              <td>{beer.description}</td>
-              <td>{beer.contributedBy}</td>
-              <td>{beer.ibu}</td>
-              <td>{beer.foodPairing?.join(', ')}</td>
-              <td>
-                <Link to={`/edit/${beer.id}`}>Edit</Link> |{' '}
-                <Link
-                  to="#"
-                  onClick={() => {
-                    removeBeer(beer.id);
-                  }}
-                >
-                  Remove
-                </Link>
-              </td>
+      {beers.length > 0 && (
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Description</th>
+              <th>Contributed by</th>
+              <th>IBU</th>
+              <th>Food pairing</th>
+              <th />
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {beers.map((beer) => (
+              <tr key={beer.id}>
+                <td>{beer.name}</td>
+                <td>{beer.description}</td>
+                <td>{beer.contributedBy}</td>
+                <td>{beer.ibu}</td>
+                <td>{beer.foodPairing?.join(', ')}</td>
+                <td>
+                  <Link to={`/edit/${beer.id}`}>Edit</Link> |{' '}
+                  <Link
+                    to="#"
+                    onClick={() => {
+                      removeBeer(beer.id);
+                    }}
+                  >
+                    Remove
+                  </Link>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+
+      {beers.length < 1 && <div>No data</div>}
     </div>
   );
 };
