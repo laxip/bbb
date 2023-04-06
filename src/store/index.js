@@ -6,6 +6,7 @@ export const useBeersStore = create(
     (set, get) => ({
       beers: [],
       addBeer: (beer) => set({ bears: [...get().bears, beer] }),
+      setBeers: (beers) => set({ beers }),
     }),
     {
       name: 'app-storage',

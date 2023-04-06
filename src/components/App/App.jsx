@@ -1,23 +1,19 @@
-import { Outlet } from 'react-router-dom';
-import Button from '../ui/Button';
-import { getBeers } from '../../api/beers';
+import { Link, Outlet } from 'react-router-dom';
+import { Ul } from './App.styled';
 
 function App() {
-  const onClick = async () => {
-    try {
-      const response = await getBeers();
-
-      console.log(response);
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
   return (
     <div>
       <h1>App CRUD</h1>
 
-      <Button onClick={onClick}>Clear current state and load examples from API</Button>
+      <Ul>
+        <li>
+          <Link to="/">Read beers</Link>
+        </li>
+        <li>
+          <Link to="/add">Add beer</Link>
+        </li>
+      </Ul>
 
       <Outlet />
     </div>
