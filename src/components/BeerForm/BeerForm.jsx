@@ -3,12 +3,14 @@ import Button from '../ui/Button';
 import FormGroup from '../ui/FormGroup';
 import FormError from '../ui/FormError';
 
-const BeerForm = ({ onSubmit }) => {
+const BeerForm = ({ onSubmit, defaultValues }) => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues,
+  });
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -36,7 +38,7 @@ const BeerForm = ({ onSubmit }) => {
         {errors.ibu && <FormError>Incorrect value</FormError>}
       </FormGroup>
 
-      <Button type="submit">Create</Button>
+      <Button type="submit">Submit</Button>
     </form>
   );
 };

@@ -18,6 +18,21 @@ export const useBeersStore = create(
         }),
       setBeers: (beers) => set({ beers }),
       removeBeer: (id) => set({ beers: get().beers.filter((beer) => beer.id !== id) }),
+      getBeer: (id) => get().beers.find((b) => b.id === id),
+      updateBeer: (id, beer) => {
+        const index = get().beers.findIndex((b) => b.id === id);
+
+        if (index >= 0) {
+          const copy = [...get().beers.filter((beer) => beer.id !== id)];
+
+          copy[index] = {
+            ...copy[index],
+            ...beer,
+          };
+
+          set({ beers: copy });
+        }
+      },
     }),
     {
       name: 'app-storage',
