@@ -1,32 +1,21 @@
-import { useForm } from 'react-hook-form';
-import { Group } from './Create.styled';
-import Button from '../ui/Button';
+import { useCallback } from 'react';
+import { useBeersStore } from '../../store';
+import { useNavigate } from 'react-router-dom';
+import BeerForm from '../BeerForm';
 
 const Create = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-  const onSubmit = (data) => console.log(data);
+  const addBeer = useBeersStore((state) => state.addBeer);
+  const navigate = useNavigate();
 
-  return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <Group>
-        <label for="id">Name</label>
-        <input defaultValue="test" id="name" {...register('name', { required: true })} />
-        {errors.name && <span>This field is required</span>}
-      </Group>
-
-      <Group>
-        <label for="id">Name</label>
-        <input defaultValue="test" id="name" {...register('name', { required: true })} />
-        {errors.name && <span>This field is required</span>}
-      </Group>
-
-      <Button type="submit">Create</Button>
-    </form>
+  const onSubmit = useCallback(
+    (data) => {
+      addBeer(data);
+      navigate('/');
+    },
+    [addBeer]
   );
+
+  return <BeerForm onSubmit={onSubmit} />;
 };
 
 export default Create;

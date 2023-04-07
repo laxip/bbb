@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Group = styled.div`
+export const FormGroup = styled.div`
   margin: 10px 0;
 
   label {
@@ -14,3 +14,5 @@ export const Group = styled.div`
     border: 1px solid #d9d9d9;
   }
 `;
+
+export default FormGroup;

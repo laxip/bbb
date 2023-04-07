@@ -2,15 +2,16 @@ import { useBeersStore } from '../../store';
 import Button from '../ui/Button';
 import { getBeers } from '../../api/beers';
 import { Link } from 'react-router-dom';
-import mapApiResponseToState from './helpers/mapApiResponseToState';
 import { ButtonContainer } from './Read.styled';
+import mapApiResponseToState from '../../api/helpers/mapApiResponseToState';
+import { useCallback } from 'react';
 
 const Read = () => {
   const beers = useBeersStore((state) => state.beers);
   const setBeers = useBeersStore((state) => state.setBeers);
   const removeBeer = useBeersStore((state) => state.removeBeer);
 
-  const loadAndSetBeers = async () => {
+  const loadAndSetBeers = useCallback(async () => {
     try {
       const response = await getBeers();
 
@@ -20,7 +21,7 @@ const Read = () => {
     } catch (e) {
       console.error(e);
     }
-  };
+  }, []);
 
   return (
     <div>
@@ -36,7 +37,6 @@ const Read = () => {
               <th>Description</th>
               <th>Contributed by</th>
               <th>IBU</th>
-              <th>Food pairing</th>
               <th />
             </tr>
           </thead>
@@ -47,7 +47,6 @@ const Read = () => {
                 <td>{beer.description}</td>
                 <td>{beer.contributedBy}</td>
                 <td>{beer.ibu}</td>
-                <td>{beer.foodPairing?.join(', ')}</td>
                 <td>
                   <Link to={`/edit/${beer.id}`}>Edit</Link> |{' '}
                   <Link
